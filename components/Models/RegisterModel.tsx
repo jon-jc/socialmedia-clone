@@ -1,17 +1,21 @@
-
 import useLoginModel from "@/hooks/useLoginModel"
 import { set } from "lodash";
 import { useCallback, useState } from "react"
 import Model from "../Model"
-import Input from "../Input";
 import useRegisterModel from "@/hooks/useRegisterModel";
+import Input from "../Input";
+import LoginModel from "./LoginModel";
 
-const LoginModel = () => {
+
+const RegisterModel = () => {
 
     const loginModel = useLoginModel();
     const registerModel = useRegisterModel();
+
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [name, setName] = useState("");
+    const [username, setUsername] = useState("");
     const [isLoading, setIsLoading] = useState(false);
 
     const onToggle = useCallback(() => {
@@ -19,10 +23,9 @@ const LoginModel = () => {
             return;
         }
 
-        loginModel.onClose();
-        registerModel.onOpen();
+        registerModel.onClose();
+        loginModel.onOpen();
     }, [isLoading, registerModel, loginModel]);
-
 
     const onSubmit = useCallback(async() => {
         try{
@@ -30,12 +33,13 @@ const LoginModel = () => {
 
             //add login logic here
 
-            loginModel.onClose();
+            registerModel.onClose();
         } catch (error) {
             console.error(error);
+        } finally {
             setIsLoading(false);
         }
-    },[loginModel]);
+    },[registerModel]);
 
 
     const bodyContent = (
@@ -47,6 +51,18 @@ const LoginModel = () => {
                 disabled={isLoading}
             />
             <Input 
+                placeholder="Name"
+                onChange={(e) => setName(e.target.value)}
+                value={name}
+                disabled={isLoading}
+            />
+            <Input 
+                placeholder="Username"
+                onChange={(e) => setUsername(e.target.value)}
+                value={username}
+                disabled={isLoading}
+            />
+            <Input 
                 placeholder="Password"
                 onChange={(e) => setPassword(e.target.value)}
                 value={password}
@@ -55,32 +71,29 @@ const LoginModel = () => {
         </div>
     )
 
-    
+
     const footerContent = (
         <div className="text-neutral-500 text-center mt-4">
-            <p>First time here?
+            <p>Already have an account?
               <span
                 onClick={onToggle}
                className="
                 text-white
                 cursor-pointer
                 hover:underline
-              "> Create an Account</span>
+              "> Sign in</span>
             </p>
 
         </div>
     )
-
-
-
   return (
     <div>
         <Model 
             disabled={isLoading}
-            isOpen={loginModel.isOpen}
-            title="Login"
-            actionLabel="Sign in"
-            onClose={loginModel.onClose}
+            isOpen={registerModel.isOpen}
+            title="Create an account"
+            actionLabel="Register"
+            onClose={registerModel.onClose}
             onSubmit={onSubmit}
             body={bodyContent}
             footer={footerContent}
@@ -90,4 +103,4 @@ const LoginModel = () => {
   )
 }
 
-export default LoginModel
+export default RegisterModel
