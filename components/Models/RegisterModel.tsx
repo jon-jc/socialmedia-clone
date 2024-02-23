@@ -5,7 +5,10 @@ import Model from "../Model"
 import useRegisterModel from "@/hooks/useRegisterModel";
 import Input from "../Input";
 import LoginModel from "./LoginModel";
-
+import axios from "axios";
+import { toast } from "react-hot-toast";
+import { signIn } from "next-auth/react";
+import { sign } from "crypto";
 
 const RegisterModel = () => {
 
@@ -32,14 +35,28 @@ const RegisterModel = () => {
             setIsLoading(true);
 
             //add login logic here
+            await axios.post("/api/register", {
+                email,
+                password,
+                username,
+                name,
+        });
+
+        toast.success("Account created successfully");
+         
+        signIn("credentials", {
+            email,
+            password,
+        });
 
             registerModel.onClose();
         } catch (error) {
             console.error(error);
+            toast.error("Failed to create account");
         } finally {
             setIsLoading(false);
         }
-    },[registerModel]);
+    },[registerModel, email, password, username, name]);
 
 
     const bodyContent = (
