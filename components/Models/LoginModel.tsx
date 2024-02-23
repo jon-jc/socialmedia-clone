@@ -5,6 +5,7 @@ import { useCallback, useState } from "react"
 import Model from "../Model"
 import Input from "../Input";
 import useRegisterModel from "@/hooks/useRegisterModel";
+import { signIn } from "next-auth/react";
 
 const LoginModel = () => {
 
@@ -29,13 +30,18 @@ const LoginModel = () => {
             setIsLoading(true);
 
             //add login logic here
+            await signIn("credentials", {
+                email,
+                password,
+            });
+
 
             loginModel.onClose();
         } catch (error) {
             console.error(error);
             setIsLoading(false);
         }
-    },[loginModel]);
+    },[loginModel,email, password]);
 
 
     const bodyContent = (
