@@ -1,17 +1,15 @@
-import { useRouter } from 'next/router';
-import { FaFeather } from 'react-icons/fa';
+import { useRouter } from "next/router";
+import { FaFeather } from "react-icons/fa";
 
-import useLoginModel from '@/hooks/useLoginModel';
-
+import useLoginModel from "@/hooks/useLoginModel";
 
 const SidebarTweetButton = () => {
   const router = useRouter();
 
-
-  
   return (
-    <div onClick= {() => router.push('/')}>
-      <div className='
+    <div onClick={() => router.push("/")}>
+      <div
+        className="
         mt-6
         lg:hidden
         rounded-full
@@ -25,10 +23,12 @@ const SidebarTweetButton = () => {
         transition
         cursor-pointer
 
-      '>
-        <FaFeather size={24} color='white' />
+      "
+      >
+        <FaFeather size={24} color="white" />
       </div>
-       <div className='
+      <div
+        className="
         mt-6
         hidden
         lg:block
@@ -39,20 +39,23 @@ const SidebarTweetButton = () => {
         hover:bg-opacity-90
         cursor-pointer
         transition
-       '>
-        <p className='
+       "
+      >
+        <p
+          className="
           hidden
           lg:block
           text-center
           font-semibold
           text-white
           text-[20px]
-        '>
+        "
+        >
           Tweet
         </p>
-       </div>
+      </div>
     </div>
-  )
-}
+  );
+};
 
-export default SidebarTweetButton
+export default SidebarTweetButton;

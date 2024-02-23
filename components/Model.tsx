@@ -3,50 +3,50 @@ import { AiOutlineClose } from "react-icons/ai";
 import Button from "./Button";
 
 interface ModelProps {
-      isOpen?: boolean;
-      onClose: () => void;
-      onSubmit: () => void;
-      title?: string;
-      body?: React.ReactElement;
-      footer?: React.ReactElement;
-      actionLabel: string;
-      disabled?: boolean;
-    }
+  isOpen?: boolean;
+  onClose: () => void;
+  onSubmit: () => void;
+  title?: string;
+  body?: React.ReactElement;
+  footer?: React.ReactElement;
+  actionLabel: string;
+  disabled?: boolean;
+}
 
 const Model: React.FC<ModelProps> = ({
-    isOpen,
-    onClose,
-    onSubmit,
-    title,
-    body,
-    footer,
-    actionLabel,
-    disabled
+  isOpen,
+  onClose,
+  onSubmit,
+  title,
+  body,
+  footer,
+  actionLabel,
+  disabled,
 }) => {
-    const handleClose = useCallback(() => {
-        if(disabled){
-            return;
-        } 
-
-        onClose();
-    },[disabled, onClose]);
-
-    const handleSubmit = useCallback(() => {
-        if(disabled){
-            return;
-        } 
-
-        onSubmit();
-
-    },  [disabled, onSubmit]);
-
-    if(!isOpen){
-        return null;
+  const handleClose = useCallback(() => {
+    if (disabled) {
+      return;
     }
-    
+
+    onClose();
+  }, [disabled, onClose]);
+
+  const handleSubmit = useCallback(() => {
+    if (disabled) {
+      return;
+    }
+
+    onSubmit();
+  }, [disabled, onSubmit]);
+
+  if (!isOpen) {
+    return null;
+  }
+
   return (
     <>
-    <div className="
+      <div
+        className="
         justify-center
         items-center
         flex   
@@ -60,8 +60,10 @@ const Model: React.FC<ModelProps> = ({
         bg-neutral-900
         bg-opacity-60
 
-    ">
-        <div className="
+    "
+      >
+        <div
+          className="
             relative
             w-full
             lg:w-3/6
@@ -70,9 +72,11 @@ const Model: React.FC<ModelProps> = ({
             lg:max-w-3xl
             h-full
             lg:h-auto
-        ">
-            {/* Content */}
-            <div className="
+        "
+        >
+          {/* Content */}
+          <div
+            className="
                 h-fuil
                 lg:h-auto
                 border-0
@@ -85,51 +89,53 @@ const Model: React.FC<ModelProps> = ({
                 bg-black
                 outline-none
                 focus:outline-none
-            ">
-                {/* Header */}
-                <div className="
+            "
+          >
+            {/* Header */}
+            <div
+              className="
                     flex
                     items-center
                     justify-between
                     p-10
                     rounded-t
-                ">
-                    <h3 className="text-3xl font-semibold text-white">{title}</h3>
-                     <button 
-                     onClick={handleClose}
-                     className="
+                "
+            >
+              <h3 className="text-3xl font-semibold text-white">{title}</h3>
+              <button
+                onClick={handleClose}
+                className="
                         p-1
                         ml-auto
                         border-0
                         text-white
                         hover:opacity-60
                         transition
-                     ">
-                        <AiOutlineClose size={20}/>
-                     </button>
-                </div>
-                {/* Body */}
-
-                <div className="relative p-10 flex-auto">
-                        {body}
-                 </div>
-                {/* Footer */}
-                 <div className="flex flex-col gap-2 p-10">
-                    <Button 
-                    disabled={disabled}
-                    label = {actionLabel}
-                    secondary
-                    fullWidth
-                    large
-                    onClick={handleSubmit}
-                    />
-                    {footer}
-                 </div>
+                     "
+              >
+                <AiOutlineClose size={20} />
+              </button>
             </div>
-        </div>
-    </div>
-    </>
-  )
-}
+            {/* Body */}
 
-export default Model
+            <div className="relative p-10 flex-auto">{body}</div>
+            {/* Footer */}
+            <div className="flex flex-col gap-2 p-10">
+              <Button
+                disabled={disabled}
+                label={actionLabel}
+                secondary
+                fullWidth
+                large
+                onClick={handleSubmit}
+              />
+              {footer}
+            </div>
+          </div>
+        </div>
+      </div>
+    </>
+  );
+};
+
+export default Model;

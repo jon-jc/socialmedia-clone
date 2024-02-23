@@ -1,41 +1,41 @@
 import { useCallback } from "react";
-import { IconType } from "react-icons"
-import { useRouter } from "next/router"
-import useCurrentUser from "@/hooks/useCurrentUser"
+import { IconType } from "react-icons";
+import { useRouter } from "next/router";
+import useCurrentUser from "@/hooks/useCurrentUser";
 import useLoginModel from "@/hooks/useLoginModel";
 import LoginModel from "../Models/LoginModel";
 
 interface SidebarItemProps {
-    label: string
-    href?: string
-    icon: IconType
-    onClick?: () => void;
-    auth?: boolean;
+  label: string;
+  href?: string;
+  icon: IconType;
+  onClick?: () => void;
+  auth?: boolean;
 }
 
 const SidebarItem: React.FC<SidebarItemProps> = ({
-    label,
-    href,
-    icon: Icon,
-    onClick,
-    auth,
+  label,
+  href,
+  icon: Icon,
+  onClick,
+  auth,
 }) => {
   const LoginModel = useLoginModel();
-  const {data: currentUser} = useCurrentUser();
+  const { data: currentUser } = useCurrentUser();
   const router = useRouter();
-  const handleClick =useCallback(() => {
+  const handleClick = useCallback(() => {
     if (onClick) {
       return onClick();
     }
     if (auth && !currentUser) {
       LoginModel.onOpen();
-    } else if (href){
-    router.push(href);
-  }
+    } else if (href) {
+      router.push(href);
+    }
   }, [router, onClick, href, currentUser, auth, LoginModel]);
   return (
     <div onClick={handleClick} className="flex flex-row items-center">
-        <div
+      <div
         className="
           relative
           rounded-full
@@ -50,11 +50,11 @@ const SidebarItem: React.FC<SidebarItemProps> = ({
           cursor-pointer
           lg:hidden
         "
-        >
+      >
         <Icon size={28} color="white" />
-
-        </div>
-        <div className="
+      </div>
+      <div
+        className="
           relative
           hidden
           lg:flex
@@ -66,14 +66,13 @@ const SidebarItem: React.FC<SidebarItemProps> = ({
           hover:bg-opacity-10
           cursor-pointer
 
-        ">
-          <Icon size={22} color="white" />
-           <p className="hidden lg:block text-white text-xl">
-              {label}
-           </p>
-        </div>
+        "
+      >
+        <Icon size={22} color="white" />
+        <p className="hidden lg:block text-white text-xl">{label}</p>
+      </div>
     </div>
-  )
-}
+  );
+};
 
-export default SidebarItem
+export default SidebarItem;
