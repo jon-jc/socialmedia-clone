@@ -2,7 +2,7 @@ import { useRouter } from "next/router";
 import { ClipLoader } from "react-spinners";
 
 import useUser from "@/hooks/useUser";
-
+import UserHero from "@/components/users/UserHero";
 import Header from "@/components/Header";
 
 const UserView = () => {
@@ -22,6 +22,7 @@ const UserView = () => {
   return (
     <>
       <Header showBackArrow label={fetchedUser?.name} />
+      <UserHero userId={userId as string} />
     </>
   );
 };
