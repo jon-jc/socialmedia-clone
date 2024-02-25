@@ -14,14 +14,14 @@ const PostView = () => {
   if (isLoading || !fetchedPost) {
     return (
       <div className="flex justify-center items-center h-full">
-        <ClipLoader color="lightblue" size={80} />
+        <ClipLoader color="white" size={80} />
       </div>
     );
   }
 
   return (
     <>
-      <Header showBackArrow label="Tweet" />
+      <Header showBackArrow label="Post" />
     </>
   );
 };

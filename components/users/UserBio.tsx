@@ -7,6 +7,7 @@ import Button from "../Button";
 import { BiCalendar } from "react-icons/bi";
 import useEditModel from "@/hooks/useEditModel";
 import useFollow from "@/hooks/useFollow";
+import { AiOutlineCalendar } from "react-icons/ai";
 
 interface UserBioProps {
   userId: string;
@@ -61,8 +62,8 @@ const UserBio: React.FC<UserBioProps> = ({ userId }) => {
               text-neutral-500
           "
           >
-            <BiCalendar size={24} />
-            <p>Joined {createdAt}</p>
+            <AiOutlineCalendar size={24} />
+            <p>Account created: {createdAt}</p>
           </div>
         </div>
         <div className="flex flex-row items-center mt-4 gap-6">
