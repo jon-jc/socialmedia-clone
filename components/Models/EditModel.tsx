@@ -7,6 +7,7 @@ import toast from "react-hot-toast";
 import { useCallback } from "react";
 import axios from "axios";
 import Modal from "../Model";
+import Input from "../Input";
 
 const EditModel = () => {
   const { data: currentUser } = useCurrentUser();
@@ -66,6 +67,29 @@ const EditModel = () => {
     mutateFetchedUser,
   ]);
 
+  const bodyContent = (
+    <div className="flex flex-col gap-4">
+      <Input
+        placeholder="Name"
+        onChange={(e) => setName(e.target.value)}
+        value={name}
+        disabled={isLoading}
+      />
+      <Input
+        placeholder="Username"
+        onChange={(e) => setUsername(e.target.value)}
+        value={username}
+        disabled={isLoading}
+      />
+      <Input
+        placeholder="Bio"
+        onChange={(e) => setBio(e.target.value)}
+        value={bio}
+        disabled={isLoading}
+      />
+    </div>
+  );
+
   return (
     <div>
       <Modal
@@ -75,6 +99,7 @@ const EditModel = () => {
         actionLabel="Save"
         onClose={editModel.onClose}
         onSubmit={onSubmit}
+        body={bodyContent}
       />
     </div>
   );
