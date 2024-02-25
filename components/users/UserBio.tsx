@@ -4,6 +4,7 @@ import useCurrentUser from "@/hooks/useCurrentUser";
 import useUser from "@/hooks/useUser";
 import { useMemo } from "react";
 import Button from "../Button";
+import { BiCalendar } from "react-icons/bi";
 
 interface UserBioProps {
   userId: string;
@@ -34,6 +35,14 @@ const UserBio: React.FC<UserBioProps> = ({ userId }) => {
           <p className="text-white text-2xl font-semibold">
             {fetchedUser?.name}
           </p>
+          <p className="text-md text-neutral-500">@{fetchedUser?.username}</p>
+        </div>
+        <div className="flex flex-col mt-4">
+          <p className="text-white">{fetchedUser?.bio}</p>
+          <div className="flex flex-row items.center gap-2 mt-4 text-neutral-500">
+            <BiCalendar size={20} />
+            <p>Joined {createdAt}</p>
+          </div>
         </div>
       </div>
     </div>
