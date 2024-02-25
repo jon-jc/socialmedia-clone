@@ -1,5 +1,5 @@
 import { useRouter } from "next/router";
-import { BsTwitter } from "react-icons/bs";
+import { GiMineralHeart } from "react-icons/gi";
 
 const SidebarLogo = () => {
   const router = useRouter();
@@ -21,7 +21,7 @@ const SidebarLogo = () => {
                 transition
             "
     >
-      <BsTwitter size={28} color="white" />
+      <GiMineralHeart size={28} color="white" />
     </div>
   );
 };
