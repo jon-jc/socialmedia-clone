@@ -2,6 +2,7 @@ import React, { use } from "react";
 
 import useUsers from "@/hooks/useUsers";
 import Avatar from "../Avatar";
+import { Meteors } from "../ui/meteors";
 
 const FollowBar = () => {
   const { data: users = [] } = useUsers();
@@ -12,6 +13,7 @@ const FollowBar = () => {
 
   return (
     <div className="px-6 py-4 hidden lg:block">
+      <Meteors />
       <div className="bg-neutral-800 rounded-xl p-4">
         <h2 className="text-white text-xl font-mono">Explore</h2>
         <div className="flex flex-col gap-0 mr-4">

@@ -10,15 +10,15 @@ const SidebarTweetButton = () => {
     <div onClick={() => router.push("/")}>
       <div
         className="
-        mt-6
+        mt-5
         lg:hidden
         rounded-full
-        h-10
-        w-10
+        h-12
+        w-12
         p-4
         flex
         items-center
-        bg-sky-500
+        bg-slate-500
         hover:bg-opacity-80
         transition
         cursor-pointer

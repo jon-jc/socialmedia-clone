@@ -9,6 +9,7 @@ import { useState } from "react";
 import { useCallback } from "react";
 import Button from "./Button";
 import Avatar from "./Avatar";
+import { TypewriterEffect } from "./ui/typewriter-effect";
 
 interface FormProps {
   placeholder: string;
@@ -17,6 +18,28 @@ interface FormProps {
 }
 
 const Form: React.FC<FormProps> = ({ placeholder, isComment, postId }) => {
+  const words = [
+    {
+      text: "Welcome",
+    },
+    {
+      text: "to",
+    },
+    {
+      text: "the",
+    },
+    {
+      text: "next",
+    },
+    {
+      text: "Social",
+    },
+    {
+      text: "media.",
+      className: "text-slate-500 dark:text-slate-500",
+    },
+  ];
+
   const registerModel = useRegisterModel();
   const loginModel = useLoginModel();
 
@@ -35,7 +58,7 @@ const Form: React.FC<FormProps> = ({ placeholder, isComment, postId }) => {
 
       await axios.post(url, { body });
 
-      toast.success("Tweet created");
+      toast.success("Post created");
       setBody("");
       mutatePosts();
     } catch (error) {
@@ -43,7 +66,7 @@ const Form: React.FC<FormProps> = ({ placeholder, isComment, postId }) => {
     } finally {
       setIsLoading(false);
     }
-  }, [body, mutatePosts]);
+  }, [body, mutatePosts, postId, isComment]);
 
   return (
     <div className="border-b-[1px] border-neutral-700 px-5 py-2">
@@ -95,7 +118,7 @@ const Form: React.FC<FormProps> = ({ placeholder, isComment, postId }) => {
       ) : (
         <div className="py-8">
           <h1 className="text-white text-2xl text-center mb-4 font-bold">
-            Welcome to Social Media
+            <TypewriterEffect words={words} />
           </h1>
           <div className="flex flex-row items-center justify-center gap-4">
             <Button label="Login" onClick={loginModel.onOpen} />

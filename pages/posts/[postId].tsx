@@ -4,6 +4,8 @@ import { ClipLoader } from "react-spinners";
 import usePost from "@/hooks/usePost";
 
 import Header from "@/components/Header";
+import Form from "@/components/Form";
+import PostItem from "@/components/posts/PostItem";
 
 const PostView = () => {
   const router = useRouter();
@@ -14,14 +16,20 @@ const PostView = () => {
   if (isLoading || !fetchedPost) {
     return (
       <div className="flex justify-center items-center h-full">
-        <ClipLoader color="white" size={80} />
+        <ClipLoader color="lightblue" size={80} />
       </div>
     );
   }
 
   return (
     <>
-      <Header showBackArrow label="Post" />
+      <Header showBackArrow label="Tweet" />
+      {/* <PostItem data={fetchedPost} /> */}
+      <Form
+        postId={postId as string}
+        isComment
+        placeholder="Tweet your reply"
+      />
     </>
   );
 };
