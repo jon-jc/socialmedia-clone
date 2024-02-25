@@ -8,6 +8,7 @@ import axios from "axios";
 import { useState } from "react";
 import { useCallback } from "react";
 import Button from "./Button";
+import Avatar from "./Avatar";
 
 interface FormProps {
   placeholder: string;
@@ -48,7 +49,48 @@ const Form: React.FC<FormProps> = ({ placeholder, isComment, postId }) => {
     <div className="border-b-[1px] border-neutral-700 px-5 py-2">
       {currentUser ? (
         <div className="flex flex-row gap-4">
-          <div></div>
+          <div>
+            <Avatar userId={currentUser.id} />
+          </div>
+          <div className="w-full">
+            <textarea
+              disabled={isLoading}
+              onChange={(e) => setBody(e.target.value)}
+              value={body}
+              className="
+            disabled:opacity-80
+            peer
+            resize-none
+            mt-3
+            w-full
+            bg-black
+            ring-0
+            outline-none
+            text-[20px]
+            placeholder-neutral-500
+            text-white
+            "
+              placeholder={placeholder}
+            ></textarea>
+            <hr
+              className="
+                opacity-0
+                peer:focus:opacity-100
+                h-[1px]
+                w-full
+                border-neutral-500
+                transition
+            "
+            />
+            <div className="flex flex-row mt-4 justify-end">
+              <Button
+                label="Post"
+                onClick={onSubmit}
+                disabled={isLoading || !body}
+                secondary
+              />
+            </div>
+          </div>
         </div>
       ) : (
         <div className="py-8">
