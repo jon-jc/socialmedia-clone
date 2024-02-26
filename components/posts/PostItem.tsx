@@ -19,6 +19,8 @@ const PostItem: React.FC<PostItemProps> = ({ data, userId }) => {
   const loginModel = useLoginModel();
   const { data: currentUser } = useCurrentUser();
 
+  const { hasLiked, toggleLike } = useLike({ postId: data.id, userId });
+
   const goToUser = useCallback(
     (event: any) => {
       event.stopPropagation();
@@ -34,9 +36,13 @@ const PostItem: React.FC<PostItemProps> = ({ data, userId }) => {
   const onLike = useCallback(
     (event: any) => {
       event.stopPropagation();
-      loginModel.onOpen();
+
+      if (!currentUser) {
+        return loginModel.onOpen();
+      }
+      toggleLike();
     },
-    [loginModel]
+    [loginModel, currentUser, toggleLike]
   );
 
   const createdAt = useMemo(() => {
@@ -45,6 +51,8 @@ const PostItem: React.FC<PostItemProps> = ({ data, userId }) => {
     }
     return formatDistanceToNowStrict(new Date(data.createdAt));
   }, [data.createdAt]);
+
+  const LikeIcon = hasLiked ? AiFillHeart : AiOutlineHeart;
 
   return (
     <div
@@ -117,7 +125,7 @@ const PostItem: React.FC<PostItemProps> = ({ data, userId }) => {
                 hover:text-red-500
             "
             >
-              {/* <LikeIcon color={hasLiked ? "red" : ""} size={20} /> */}
+              <LikeIcon color={hasLiked ? "red" : ""} size={20} />
               <p>{data.likedIds?.length}</p>
             </div>
           </div>
