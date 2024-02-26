@@ -3,7 +3,7 @@ import { useCallback, useMemo } from "react";
 import { toast } from "react-hot-toast";
 
 import useCurrentUser from "./useCurrentUser";
-import useLoginModal from "./useLoginModel";
+import useLoginModel from "./useLoginModel";
 import usePost from "./usePost";
 import usePosts from "./usePosts";
 
@@ -12,7 +12,7 @@ const useLike = ({ postId, userId }: { postId: string; userId?: string }) => {
   const { data: fetchedPost, mutate: mutateFetchedPost } = usePost(postId);
   const { mutate: mutateFetchedPosts } = usePosts(userId);
 
-  const loginModal = useLoginModal();
+  const loginModel = useLoginModel();
 
   const hasLiked = useMemo(() => {
     const list = fetchedPost?.likedIds || [];
@@ -22,7 +22,7 @@ const useLike = ({ postId, userId }: { postId: string; userId?: string }) => {
 
   const toggleLike = useCallback(async () => {
     if (!currentUser) {
-      return loginModal.onOpen();
+      return loginModel.onOpen();
     }
 
     try {
@@ -48,7 +48,7 @@ const useLike = ({ postId, userId }: { postId: string; userId?: string }) => {
     postId,
     mutateFetchedPosts,
     mutateFetchedPost,
-    loginModal,
+    loginModel,
   ]);
 
   return {

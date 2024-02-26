@@ -5,7 +5,7 @@ import useLoginModel from "./useLoginModel";
 import { toast } from "react-hot-toast";
 import axios from "axios";
 
-const UseFollow = (userId: string) => {
+const useFollow = (userId: string) => {
   const { data: currentUser, mutate: mutateCurrentUser } = useCurrentUser();
   const { mutate: mutateFetchedUser } = useUser(userId);
 
@@ -54,4 +54,4 @@ const UseFollow = (userId: string) => {
   };
 };
 
-export default UseFollow;
+export default useFollow;

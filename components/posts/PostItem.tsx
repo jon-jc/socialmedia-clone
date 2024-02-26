@@ -8,21 +8,20 @@ import useCurrentUser from "@/hooks/useCurrentUser";
 import useLike from "@/hooks/useLike";
 
 import Avatar from "../Avatar";
+
 interface PostItemProps {
   data: Record<string, any>;
   userId?: string;
 }
 
-const PostItem: React.FC<PostItemProps> = ({ data = {}, userId }) => {
+const PostItem: React.FC<PostItemProps> = ({ data, userId }) => {
   const router = useRouter();
   const loginModel = useLoginModel();
-
   const { data: currentUser } = useCurrentUser();
-  const { hasLiked, toggleLike } = useLike({ postId: data.id, userId });
 
   const goToUser = useCallback(
-    (ev: any) => {
-      ev.stopPropagation();
+    (event: any) => {
+      event.stopPropagation();
       router.push(`/users/${data.user.id}`);
     },
     [router, data.user.id]
@@ -33,25 +32,17 @@ const PostItem: React.FC<PostItemProps> = ({ data = {}, userId }) => {
   }, [router, data.id]);
 
   const onLike = useCallback(
-    async (ev: any) => {
-      ev.stopPropagation();
-
-      if (!currentUser) {
-        return loginModel.onOpen();
-      }
-
-      toggleLike();
+    (event: any) => {
+      event.stopPropagation();
+      loginModel.onOpen();
     },
-    [loginModel, currentUser, toggleLike]
+    [loginModel]
   );
 
-  const LikeIcon = hasLiked ? AiFillHeart : AiOutlineHeart;
-
   const createdAt = useMemo(() => {
-    if (!data?.createdAt) {
+    if (!data.createdAt) {
       return null;
     }
-
     return formatDistanceToNowStrict(new Date(data.createdAt));
   }, [data.createdAt]);
 
@@ -126,8 +117,8 @@ const PostItem: React.FC<PostItemProps> = ({ data = {}, userId }) => {
                 hover:text-red-500
             "
             >
-              <LikeIcon color={hasLiked ? "red" : ""} size={20} />
-              <p>{data.likedIds.length}</p>
+              {/* <LikeIcon color={hasLiked ? "red" : ""} size={20} /> */}
+              <p>{data.likedIds?.length}</p>
             </div>
           </div>
         </div>
