@@ -10,6 +10,7 @@ import { useCallback } from "react";
 import Button from "./Button";
 import Avatar from "./Avatar";
 import { TypewriterEffect } from "./ui/typewriter-effect";
+import usePost from "@/hooks/usePost";
 
 interface FormProps {
   placeholder: string;
@@ -45,6 +46,7 @@ const Form: React.FC<FormProps> = ({ placeholder, isComment, postId }) => {
 
   const { data: currentUser } = useCurrentUser();
   const { mutate: mutatePosts } = usePosts();
+  const { mutate: mutatePost } = usePost(postId as string);
 
   const [body, setBody] = React.useState("");
 
@@ -61,12 +63,13 @@ const Form: React.FC<FormProps> = ({ placeholder, isComment, postId }) => {
       toast.success("Post created");
       setBody("");
       mutatePosts();
+      mutatePost();
     } catch (error) {
       toast.error("Something went wrong");
     } finally {
       setIsLoading(false);
     }
-  }, [body, mutatePosts, postId, isComment]);
+  }, [body, mutatePosts, postId, isComment, mutatePost]);
 
   return (
     <div className="border-b-[1px] border-neutral-700 px-5 py-2">
