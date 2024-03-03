@@ -28,8 +28,8 @@ Follow these instructions to get the project up and running on your local machin
 1. **Clone the repository**
 ```bash
 
-git clone https://github.com/yourgithub/twitter-clone.git
-cd twitter-clone
+git clone https://github.com/yourgithub/socialmedia-clone.git
+cd socialmedia-clone
 Install dependencies
 
 Copy code
