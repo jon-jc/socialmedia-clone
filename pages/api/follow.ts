@@ -34,7 +34,8 @@ export default async function handler(
 
     if (req.method === "POST") {
       updatedFollowingIds.push(userId);
-
+      console.log("user", user);
+      console.log("updatedFollowingIds", updatedFollowingIds);
       // NOTIFICATION PART START
       try {
         await prisma.notification.create({

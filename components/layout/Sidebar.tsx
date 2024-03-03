@@ -1,9 +1,9 @@
-import { BsHouseFill } from "react-icons/bs";
-import { BsBellFill } from "react-icons/bs";
-import { FaUser } from "react-icons/fa";
+import { HiHome } from "react-icons/hi2";
+import { IoNotificationsCircle } from "react-icons/io5";
+import { RiUser6Fill } from "react-icons/ri";
 import SidebarLogo from "./SidebarLogo";
 import SidebarItem from "./SidebarItem";
-import { BiLogOut } from "react-icons/bi";
+import { RiLogoutCircleLine } from "react-icons/ri";
 import SidebarTweetButton from "./SidebarTweetButton";
 import useCurrentUser from "@/hooks/useCurrentUser";
 import { signOut } from "next-auth/react";
@@ -14,19 +14,19 @@ const Sidebar = () => {
     {
       label: "Home",
       href: "/",
-      icon: BsHouseFill,
+      icon: HiHome,
     },
     {
       label: "Notifications",
       href: "/notifications",
-      icon: BsBellFill,
+      icon: IoNotificationsCircle,
       auth: true,
       alert: currentUser?.hasNotification,
     },
     {
-      label: "Profile",
+      label: "User Profile",
       href: `/users/${currentUser?.id}`,
-      icon: FaUser,
+      icon: RiUser6Fill,
       auth: true,
     },
   ];
@@ -49,7 +49,7 @@ const Sidebar = () => {
           {currentUser && (
             <SidebarItem
               onClick={() => signOut()}
-              icon={BiLogOut}
+              icon={RiLogoutCircleLine}
               label="Logout"
             />
           )}
