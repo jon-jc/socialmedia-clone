@@ -1,6 +1,6 @@
 # Social Media Clone Project
 
-This project is a social media platform inspired by the popular platfrom Twitter, built with a focus on modern web development technologies. It's designed to offer an engaging and responsive user experience, showcasing best practices in full-stack development.
+This project is a social media platform inspired by the popular platform Twitter, built with a focus on modern web development technologies. It's designed to offer an engaging and responsive user experience, showcasing best practices in full-stack development.
 
 ## Technologies Used
 
@@ -28,8 +28,8 @@ Follow these instructions to get the project up and running on your local machin
 1. **Clone the repository**
 ```bash
 
-git clone https://github.com/yourgithub/twitter-clone.git
-cd twitter-clone
+git clone https://github.com/yourgithub/socialmedia-clone.git
+cd socialmedia-clone
 Install dependencies
 
 Copy code
