@@ -1,6 +1,6 @@
 # Social Media Clone Project
 
-This project is a social media platform inspired by the popular platfrom Twitter, built with a focus on modern web development technologies. It's designed to offer an engaging and responsive user experience, showcasing best practices in full-stack development.
+This project is a social media platform inspired by the popular platform Twitter, built with a focus on modern web development technologies. It's designed to offer an engaging and responsive user experience, showcasing best practices in full-stack development.
 
 ## Technologies Used
 
